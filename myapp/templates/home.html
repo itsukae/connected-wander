@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Home</title>
+  </head>
+  <body>
+    <h1>Welcome, {{ current_user.username }}!</h1>
+    <h2>Requirements:</h2>
+    <ul>
+      {% for requirement in requirements %}
+        <li>{{ requirement }}</li>
+      {% endfor %}
+    </ul>
+  </body>
+</html>

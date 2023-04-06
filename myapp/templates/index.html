@@ -1,0 +1,33 @@
+<!-- index.html -->
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+  <h1 class="mb-4">Welcome to My Website</h1>
+  {% if current_user.is_authenticated %}
+    <h2>Hello, {{ current_user.username }}!</h2>
+    <form method="post" action="{{ url_for('index') }}">
+      <div class="mb-3">
+        <label for="title" class="form-label">Title:</label>
+        <input type="text" name="title" id="title" class="form-control" required>
+      </div>
+      <div class="mb-3">
+        <label for="content" class="form-label">Content:</label>
+        <textarea name="content" id="content" class="form-control" required></textarea>
+      </div>
+      <input type="submit" value="Post Requirement" class="btn btn-primary">
+    </form>
+    <h2 class="mt-4">Your Requirements</h2>
+    <ul class="list-group">
+      {% for requirement in requirements %}
+        <li class="list-group-item">
+          <h3>{{ requirement.title }}</h3>
+          <p>{{ requirement.content }}</p>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>Please <a href="{{ url_for('login') }}">login</a> or <a href="{{ url_for('register') }}">register</a> to post your requirements.</p>
+  {% endif %}
+{% endblock %}
